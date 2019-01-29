@@ -26,15 +26,17 @@ namespace WpfAppClientEmpDep
         {
             InitializeComponent();
 
-            string urlEmp = @"http://localhost:54926/api/Employee/1";
+            string urlEmp = @"http://localhost:54926/api/Emp";
 
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
-            var r = httpClient.GetStringAsync(urlEmp).Result;
+            var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
 
-            Console.WriteLine(r);
+            Console.WriteLine(resultEmp);
 
-            string urlDep = @"http://localhost:54926/api/Department/1";
+            string urlDep = @"http://localhost:54926/api/Dep";
+            var resultDep = httpClient.GetStringAsync(urlDep).Result;
+            Console.WriteLine(resultDep);
 
 
             //var cl = new WebClient() {Encoding = Encoding.UTF8};
