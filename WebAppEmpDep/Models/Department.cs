@@ -5,6 +5,9 @@ using System.Web;
 
 namespace WebAppEmpDep.Models
 {
+    /// <summary>
+    /// Класс Департамент в модели веб приложения
+    /// </summary>
     public class Department
     {
         public int DepId { get; set; }
