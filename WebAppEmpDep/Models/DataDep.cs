@@ -17,6 +17,30 @@ namespace WebAppEmpDep.Models
                                          Integrated Security=True";
 
             sqlConnection   =   new SqlConnection(connectionString);
+            sqlConnection.Open();
+        }
+
+        public List<Department> GeList()
+        {
+            List<Department>    list = new List<Department>();
+            string sql = @"SELECT * FROM DepTable";
+
+            using (SqlCommand com = new SqlCommand(sql, sqlConnection))
+            {
+                using (SqlDataReader reader = com.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            new Department()
+                            {
+                                DepId = ConvertToInt32(reader["Id"]),
+                                DepName = reader["NameDep"].ToString(),
+                            });
+                    }
+                }
+
+            }
         }
 
 
