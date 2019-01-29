@@ -90,5 +90,26 @@ namespace WebAppEmpDep.Controllers
             }
             return empDep;
         }
+
+        public IHttpActionResult GetDepEmpHttpActionResult(Employee[] emps, int depId)
+        {
+            if (emps.Length == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(emps));
+            var empDep = new List<Employee>();
+            foreach (Employee v in emps)
+            {
+                if (v.DepId == depId)
+                {
+                    empDep.Add(v);
+                }
+            }
+
+            if (empDep.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(empDep);
+        }
+
+
     }
 }
