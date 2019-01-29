@@ -20,9 +20,10 @@ namespace WebAppEmpDep.Models
             sqlConnection.Open();
         }
 
-        public List<Department> GeList()
+        public List<Department> GetList()
         {
-            List<Department>    list = new List<Department>();
+            List<Department> list = new List<Department>();
+
             string sql = @"SELECT * FROM DepTable";
 
             using (SqlCommand com = new SqlCommand(sql, sqlConnection))
@@ -31,18 +32,17 @@ namespace WebAppEmpDep.Models
                 {
                     while (reader.Read())
                     {
-                        list.Add(
-                            new Department()
-                            {
-                                DepId = reader["Id"]),
-                                DepName = reader["NameDep"].ToString()
-                            });
+                        list.Add( 
+                        new Department()
+                        {
+                            DepId = (int) reader["Id"], 
+                            DepName = reader["NameDep"].ToString()
+                        });
                     }
                 }
-
             }
+            //return list;
         }
-
-
+           
     }
 }
