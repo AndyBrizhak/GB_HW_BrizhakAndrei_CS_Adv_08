@@ -6,11 +6,11 @@ using System.Web;
 
 namespace WebAppEmpDep.Models
 {
-    public class DataDep
+    public class GetDataDep
     {
         private SqlConnection sqlConnection;
 
-        public DataDep()
+        public GetDataDep()
         {
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;
                                          Initial Catalog=Emp_Dep;
