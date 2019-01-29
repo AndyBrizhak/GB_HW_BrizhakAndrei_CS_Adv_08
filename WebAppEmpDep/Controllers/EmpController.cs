@@ -11,7 +11,7 @@ namespace WebAppEmpDep.Controllers
     /// <summary>
     /// Класс - контроллер для списка Сотрудников
     /// </summary>
-    public class EmployeeController : ApiController
+    public class EmpController : ApiController
     {
         //Employee[] employees = new Employee[]
         //{
