@@ -34,8 +34,8 @@ namespace WebAppEmpDep.Models
                         list.Add(
                             new Department()
                             {
-                                DepId = ConvertToInt32(reader["Id"]),
-                                DepName = reader["NameDep"].ToString(),
+                                DepId = reader["Id"]),
+                                DepName = reader["NameDep"].ToString()
                             });
                     }
                 }
