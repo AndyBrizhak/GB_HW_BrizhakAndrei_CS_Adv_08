@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,17 @@ namespace WpfAppClientEmpDep
         public MainWindow()
         {
             InitializeComponent();
+
+            string url = @"http://localhost:54926/api/Employee/1";
+
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
+            var r = httpClient.GetStringAsync(url).Result;
+
+            Console.WriteLine(r);
+
+            //var cl = new WebClient() {Encoding = Encoding.UTF8};
+            //Console.WriteLine(cl.DownloadString(url));
         }
     }
 }
