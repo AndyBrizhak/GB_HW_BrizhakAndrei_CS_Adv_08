@@ -35,17 +35,22 @@ namespace WpfAppClientEmpDep
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             //var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
+
             ////Console.WriteLine(resultEmp);
 
             //(urlEmp + "api/api/Emp");
 
             //var resultDep = httpClient.GetStringAsync(urlDep).Result;
+
             ////Console.WriteLine(resultDep);
             DbEmployees = null;
-            DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
+            HttpResponseMessage responsDepResult = httpClient.GetAsync(urlDep).Result;
+            var taskDepRes = responsDepResult.Content.ReadAsAsync<ObservableCollection<Department>>();
+            DbDepartments = taskDepRes.Result;
+            //DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
 
             DbDepartments = null;
-            DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
+            //DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
         }
 
         /// <summary>
