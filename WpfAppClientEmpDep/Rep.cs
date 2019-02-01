@@ -43,14 +43,23 @@ namespace WpfAppClientEmpDep
             //var resultDep = httpClient.GetStringAsync(urlDep).Result;
 
             ////Console.WriteLine(resultDep);
-            DbEmployees = null;
+            //DbEmployees = null;
+            DbDepartments = null;
             HttpResponseMessage responsDepResult = httpClient.GetAsync(urlDep).Result;
             var taskDepRes = responsDepResult.Content.ReadAsAsync<ObservableCollection<Department>>();
             DbDepartments = taskDepRes.Result;
+           
             //DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
 
-            DbDepartments = null;
+
             //DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
+        }
+
+        private ObservableCollection<Employee> GetEmp(string urlEmp)
+        {
+            var resp = httpClient.GetAsync(urlEmp).Result;
+            var task = resp.Content.ReadAsAsync<ObservableCollection<Employee>>();
+            var res = task.Result;
         }
 
         /// <summary>
