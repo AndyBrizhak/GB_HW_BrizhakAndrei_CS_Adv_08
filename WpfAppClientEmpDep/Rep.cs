@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfAppClientEmpDep
 {
-    public class Rep                                                             /*: IEquatable<Department>*/
+    public class Rep                                                           
     {
         /// <summary>
         /// Cтатический клиент для подключения через HttpClient
@@ -19,10 +19,7 @@ namespace WpfAppClientEmpDep
         /// Динамический список Работников
         /// </summary>
         public ObservableCollection<Employee> DbEmployees { get; set; }
-
         public ObservableCollection<Department> DbDepartments { get; set; }
-       
-        
 
         /// <summary>
         /// Класс Репозиторий для описания списков Работников и Департаментов
@@ -37,20 +34,18 @@ namespace WpfAppClientEmpDep
 
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
+            //var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
             ////Console.WriteLine(resultEmp);
 
             //(urlEmp + "api/api/Emp");
 
-            var resultDep = httpClient.GetStringAsync(urlDep).Result;
+            //var resultDep = httpClient.GetStringAsync(urlDep).Result;
             ////Console.WriteLine(resultDep);
             DbEmployees = null;
             DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
 
             DbDepartments = null;
             DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
-
-
         }
 
         /// <summary>
@@ -75,10 +70,8 @@ namespace WpfAppClientEmpDep
                 Console.WriteLine("Не найден список Департаментов на веб ресурсе");
                 throw;
             }
-
             return ColDep;
         }
-
 
         /// <summary>
         /// Метод получения списка работников из веб сервиса
@@ -102,7 +95,6 @@ namespace WpfAppClientEmpDep
                 Console.WriteLine("Не найден список Работников на веб ресурсе");
                 throw;
             }
-               
             return ColEmp;
         }
 
