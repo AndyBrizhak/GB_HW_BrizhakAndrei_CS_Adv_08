@@ -45,19 +45,45 @@ namespace WpfAppClientEmpDep
             var resultDep = httpClient.GetStringAsync(urlDep).Result;
             ////Console.WriteLine(resultDep);
             DbEmployees = null;
+            DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
 
-            DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса из вебприложения
+            DbDepartments = null;
+            DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
 
-            
+
         }
 
-        
+        /// <summary>
+        /// Метод получения списка  департаментов из веб сервиса
+        /// </summary>
+        /// <param name="urlDep"></param>
+        /// <returns></returns>
+        private async Task<ObservableCollection<Department>> GetDepAsync(string urlDep)
+        {
+            ObservableCollection<Department> ColDep = null;
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(urlDep);
+                if (response.IsSuccessStatusCode)
+                {
+                    ColDep = await response.Content.ReadAsAsync<ObservableCollection<Department>>();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Не найден список Департаментов на веб ресурсе");
+                throw;
+            }
+
+            return ColDep;
+        }
 
 
         /// <summary>
         /// Метод получения списка работников из веб сервиса
         /// </summary>
-        /// <param name="urlEmp"></param>
+        /// <param name="urlEmp">Параметры запроса к веб прилжению</param>
         /// <returns></returns>
         private async Task <ObservableCollection<Employee>> GetEmpAsync (string urlEmp)
         {
