@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,14 +10,74 @@ namespace WpfAppClientEmpDep
 {
     public class Rep                                                             /*: IEquatable<Department>*/
     {
-        public ObservableCollection<Employee> DbEmployees { get; set; }
-        public ObservableCollection<Department> DbDepartments { get; set; }
+        /// <summary>
+        /// Cтатический клиент для подключения через HttpClient
+        /// </summary>
+        static HttpClient httpClient = new HttpClient();
 
+        /// <summary>
+        /// Динамический список Работников
+        /// </summary>
+        public ObservableCollection<Employee> DbEmployees { get; set; }
+
+        public ObservableCollection<Department> DbDepartments { get; set; }
+       
+        
+
+        /// <summary>
+        /// Класс Репозиторий для описания списков Работников и Департаментов
+        /// </summary>
         public Rep()
         {
             DbEmployees = new ObservableCollection<Employee>();
             DbDepartments = new ObservableCollection<Department>();
 
+            string urlEmp = @"http://localhost:54926/api/Emp";
+            string urlDep = @"http://localhost:54926/api/Dep";
+
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
+            ////Console.WriteLine(resultEmp);
+
+            //(urlEmp + "api/api/Emp");
+
+            var resultDep = httpClient.GetStringAsync(urlDep).Result;
+            ////Console.WriteLine(resultDep);
+            DbEmployees = null;
+
+            DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса из вебприложения
+
+            
+        }
+
+        
+
+
+        /// <summary>
+        /// Метод получения списка работников из веб сервиса
+        /// </summary>
+        /// <param name="urlEmp"></param>
+        /// <returns></returns>
+        private async Task <ObservableCollection<Employee>> GetEmpAsync (string urlEmp)
+        {
+            ObservableCollection<Employee> ColEmp = null;
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(urlEmp);
+                if (response.IsSuccessStatusCode)
+                {
+                    ColEmp = await response.Content.ReadAsAsync <ObservableCollection<Employee>>();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Не найден список Работников на веб ресурсе");
+                throw;
+            }
+               
+            return ColEmp;
         }
 
 

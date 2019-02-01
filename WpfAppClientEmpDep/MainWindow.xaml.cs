@@ -44,7 +44,7 @@ namespace WpfAppClientEmpDep
             //var cl = new WebClient() {Encoding = Encoding.UTF8};
             //Console.WriteLine(cl.DownloadString(url));
 
-            InitializeComponent();
+            //InitializeComponent();
             dbEmpDep = new Rep();
             MainGrid.DataContext = dbEmpDep;
             this.DataContext = dbEmpDep;
