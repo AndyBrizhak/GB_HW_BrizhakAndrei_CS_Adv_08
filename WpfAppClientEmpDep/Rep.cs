@@ -48,7 +48,8 @@ namespace WpfAppClientEmpDep
             HttpResponseMessage responsDepResult = httpClient.GetAsync(urlDep).Result;
             var taskDepRes = responsDepResult.Content.ReadAsAsync<ObservableCollection<Department>>();
             DbDepartments = taskDepRes.Result;
-           
+            DbEmployees = GetEmp(urlEmp);
+
             //DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
 
 
@@ -60,6 +61,7 @@ namespace WpfAppClientEmpDep
             var resp = httpClient.GetAsync(urlEmp).Result;
             var task = resp.Content.ReadAsAsync<ObservableCollection<Employee>>();
             var res = task.Result;
+            return res;
         }
 
         /// <summary>
