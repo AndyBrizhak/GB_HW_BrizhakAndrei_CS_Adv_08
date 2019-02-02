@@ -34,29 +34,18 @@ namespace WpfAppClientEmpDep
 
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            //var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
-
-            ////Console.WriteLine(resultEmp);
-
-            //(urlEmp + "api/api/Emp");
-
-            //var resultDep = httpClient.GetStringAsync(urlDep).Result;
-
-            ////Console.WriteLine(resultDep);
             DbEmployees = null;
             DbDepartments = null;
             Task<ObservableCollection<Department>> taskDepRes = GetDep(urlDep);
             DbDepartments = taskDepRes.Result;
-
-
             DbEmployees = GetEmp(urlEmp).Result;
-
-            //DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
-
-
-            //DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
         }
 
+        /// <summary>
+        /// Получение результата запроса списка департаментов из вебприложения
+        /// </summary>
+        /// <param name="urlDep"></param>
+        /// <returns></returns>
         private static Task<ObservableCollection<Department>> GetDep(string urlDep)
         {
             var responsDepResult = httpClient.GetAsync(urlDep).Result;
@@ -64,6 +53,11 @@ namespace WpfAppClientEmpDep
             return taskDepRes;
         }
 
+        /// <summary>
+        /// Получение результата запроса списка работников из вебприложения
+        /// </summary>
+        /// <param name="urlEmp"></param>
+        /// <returns></returns>
         private static Task<ObservableCollection<Employee>> GetEmp(string urlEmp)
         {
             var responsEmpResult = httpClient.GetAsync(urlEmp).Result;
