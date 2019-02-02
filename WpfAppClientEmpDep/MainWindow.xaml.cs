@@ -28,23 +28,23 @@ namespace WpfAppClientEmpDep
         {
             InitializeComponent();
 
-            string urlEmp = @"http://localhost:54926/api/Emp";
+            //string urlEmp = @"http://localhost:54926/api/Emp";
 
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
-            var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
+            //var httpClient = new HttpClient();
+            //httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
+            //var resultEmp = httpClient.GetStringAsync(urlEmp).Result;
 
-            //Console.WriteLine(resultEmp);
+            ////Console.WriteLine(resultEmp);
 
-            string urlDep = @"http://localhost:54926/api/Dep";
-            var resultDep = httpClient.GetStringAsync(urlDep).Result;
-            //Console.WriteLine(resultDep);
+            //string urlDep = @"http://localhost:54926/api/Dep";
+            //var resultDep = httpClient.GetStringAsync(urlDep).Result;
+            ////Console.WriteLine(resultDep);
 
 
-            //var cl = new WebClient() {Encoding = Encoding.UTF8};
-            //Console.WriteLine(cl.DownloadString(url));
+            ////var cl = new WebClient() {Encoding = Encoding.UTF8};
+            ////Console.WriteLine(cl.DownloadString(url));
 
-            //InitializeComponent();
+            ////InitializeComponent();
             dbEmpDep = new Rep();
             MainGrid.DataContext = dbEmpDep;
             this.DataContext = dbEmpDep;
