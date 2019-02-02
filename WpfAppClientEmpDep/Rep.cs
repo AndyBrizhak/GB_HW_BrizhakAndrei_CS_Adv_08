@@ -43,12 +43,13 @@ namespace WpfAppClientEmpDep
             //var resultDep = httpClient.GetStringAsync(urlDep).Result;
 
             ////Console.WriteLine(resultDep);
-            //DbEmployees = null;
+            DbEmployees = null;
             DbDepartments = null;
-            HttpResponseMessage responsDepResult = httpClient.GetAsync(urlDep).Result;
-            var taskDepRes = responsDepResult.Content.ReadAsAsync<ObservableCollection<Department>>();
+            Task<ObservableCollection<Department>> taskDepRes = GetDep(urlDep);
             DbDepartments = taskDepRes.Result;
-            DbEmployees = GetEmp(urlEmp);
+
+
+            DbEmployees = GetEmp(urlEmp).Result;
 
             //DbEmployees =  GetEmpAsync(urlEmp).Result; //Получение результата запроса списка работников из вебприложения
 
@@ -56,63 +57,40 @@ namespace WpfAppClientEmpDep
             //DbDepartments = GetDepAsync(urlDep).Result; //Получение результата запроса списка работников из вебприложения
         }
 
-        private ObservableCollection<Employee> GetEmp(string urlEmp)
+        private static Task<ObservableCollection<Department>> GetDep(string urlDep)
         {
-            var resp = httpClient.GetAsync(urlEmp).Result;
-            var task = resp.Content.ReadAsAsync<ObservableCollection<Employee>>();
-            var res = task.Result;
-            return res;
+            var responsDepResult = httpClient.GetAsync(urlDep).Result;
+            var taskDepRes = responsDepResult.Content.ReadAsAsync<ObservableCollection<Department>>();
+            return taskDepRes;
         }
 
-        /// <summary>
-        /// Метод получения списка  департаментов из веб сервиса
-        /// </summary>
-        /// <param name="urlDep"></param>
-        /// <returns></returns>
-        private async Task<ObservableCollection<Department>> GetDepAsync(string urlDep)
+        private static Task<ObservableCollection<Employee>> GetEmp(string urlEmp)
         {
-            ObservableCollection<Department> ColDep = null;
-            try
-            {
-                HttpResponseMessage response = await httpClient.GetAsync(urlDep);
-                if (response.IsSuccessStatusCode)
-                {
-                    ColDep = await response.Content.ReadAsAsync<ObservableCollection<Department>>();
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Не найден список Департаментов на веб ресурсе");
-                throw;
-            }
-            return ColDep;
+            var responsEmpResult = httpClient.GetAsync(urlEmp).Result;
+            var taskEmpRes = responsEmpResult.Content.ReadAsAsync<ObservableCollection<Employee>>();
+            return taskEmpRes;
         }
 
-        /// <summary>
-        /// Метод получения списка работников из веб сервиса
-        /// </summary>
-        /// <param name="urlEmp">Параметры запроса к веб прилжению</param>
-        /// <returns></returns>
-        private async Task <ObservableCollection<Employee>> GetEmpAsync (string urlEmp)
-        {
-            ObservableCollection<Employee> ColEmp = null;
-            try
-            {
-                HttpResponseMessage response = await httpClient.GetAsync(urlEmp);
-                if (response.IsSuccessStatusCode)
-                {
-                    ColEmp = await response.Content.ReadAsAsync <ObservableCollection<Employee>>();
-                }
+        //private Task<ObservableCollection<Employee>> GetEmp(string urlEmp)
+        //{
+        //    Task<ObservableCollection<Employee>> task = null;
+        //    try
+        //    {
+        //        var resp = httpClient.GetAsync(urlEmp);
+        //        if (resp.IsCompleted)
+        //        {
+        //            var respResult = resp.Result;
+        //            task = respResult.Content.ReadAsAsync<ObservableCollection<Employee>>();
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Не найден список Работников на веб ресурсе");
-                throw;
-            }
-            return ColEmp;
-        }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //       Console.WriteLine("Не найден список Работников на веб ресурсе: {0}", e.ToString());
+        //        throw;
+        //    }
+        //    return task;
+        //}
 
 
         /// <summary>
