@@ -24,7 +24,10 @@ namespace WpfAppClientEmpDep
             InitializeComponent();
             btn.Click += delegate
             {
-                dbEmpDep.DbDepartments[i - 1].DepName = txt.Text;
+               
+                
+                dbEmpDep.EdDepp(i, txt.Text);
+
                 this.DialogResult = true;
             };
         }

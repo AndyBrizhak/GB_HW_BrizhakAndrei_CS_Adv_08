@@ -21,6 +21,8 @@ namespace WpfAppClientEmpDep
         public ObservableCollection<Employee> DbEmployees { get; set; }
         public ObservableCollection<Department> DbDepartments { get; set; }
 
+       
+
         /// <summary>
         /// Класс Репозиторий для описания списков Работников и Департаментов
         /// </summary>
@@ -95,6 +97,17 @@ namespace WpfAppClientEmpDep
         {
             DbDepartments.Add(new Department(nameDep, DbDepartments.Count + 1));
 
+        }
+
+        /// <summary>
+        /// Редактирует название департамента
+        /// </summary>
+        /// <param name="iDep"></param>
+        /// <param name="text"></param>
+        public void EdDepp(int iDep, string text)
+        {
+            DbDepartments[iDep - 1].DepName = text;
+            
         }
 
         /// <summary>
