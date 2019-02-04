@@ -72,7 +72,9 @@ namespace WpfAppClientEmpDep
         private void ListEmp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            new EditEmpWindow((ListEmp.SelectedItem as Employee).GetHashCode(), dbEmpDep).ShowDialog();
+            //new EditEmpWindow((ListEmp.SelectedItem as Employee)/*.GetHashCode()*/, dbEmpDep).ShowDialog();
+            new EditEmpWindow((ListEmp.SelectedItem as Employee),dbEmpDep).ShowDialog();
+
         }
 
         private void DepCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)

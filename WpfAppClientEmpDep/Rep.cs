@@ -110,6 +110,11 @@ namespace WpfAppClientEmpDep
             
         }
 
+        public void EdEmp(Employee selEmp, string txt)
+        {
+            selEmp.FName = txt;
+        }
+
         /// <summary>
         /// Удаление департамента и всех его сотрудников
         /// </summary>

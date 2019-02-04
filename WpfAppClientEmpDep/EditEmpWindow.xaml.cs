@@ -19,17 +19,20 @@ namespace WpfAppClientEmpDep
     /// </summary>
     public partial class EditEmpWindow : Window
     {
-        public EditEmpWindow(int i, Rep dbEmpDep)
+        //public EditEmpWindow(int i, Rep dbEmpDep)
+        public EditEmpWindow(Employee selEmp, Rep dbEmpDep)
         {
             InitializeComponent();
             btn.Click += delegate
             {
-                var selEmp = dbEmpDep.DbEmployees.Single(e => e.GetHashCode() == i);
-                selEmp.FName = txt.Text;
-                //dbEmpDep.DbEmployees[i].FName = txt.Text;
+                //var selEmp = dbEmpDep.DbEmployees.Single(e => e.GetHashCode() == i);
+                dbEmpDep.EdEmp(selEmp, txt.Text);
+               
                 this.DialogResult = true;
             };
 
         }
+
+        
     }
 }
