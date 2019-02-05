@@ -113,5 +113,32 @@ namespace WebAppEmpDep.Models
             return temp;
         }
 
+        /// <summary>
+        /// Метод добавления работника в список в БД
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns></returns>
+        public bool AddEmp(Employee emp)
+        {
+            try
+            {
+                string sqlAdd = $@" INSERT INTO EmpTable(Id, FName, LName, Age, DepID)
+                               VALUES(
+                                      N'{emp.FName}',
+                                      N'{emp.LName}',
+                                      N'{emp.Age}',
+                                      N'{emp.DepId}' )";                  /*N'{emp.Id}',*/
+                using (var com = new SqlCommand(sqlAdd, sqlConnection))
+                {
+                    com.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }
