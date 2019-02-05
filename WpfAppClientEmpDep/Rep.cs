@@ -31,8 +31,8 @@ namespace WpfAppClientEmpDep
             DbEmployees = new ObservableCollection<Employee>();
             DbDepartments = new ObservableCollection<Department>();
 
-            string urlEmp = @"http://localhost:54926/api/Emp";
-            string urlDep = @"http://localhost:54926/api/Dep";
+            string urlEmp = @"http://localhost:54926/getlistemp";
+            string urlDep = @"http://localhost:54926/getlistdep";
 
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
