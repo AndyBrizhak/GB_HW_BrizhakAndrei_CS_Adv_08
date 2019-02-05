@@ -49,6 +49,31 @@ namespace WebAppEmpDep.Models
         }
 
         /// <summary>
+        /// Метод получения списка  Работников из БД по номеру Департамента
+        /// </summary>
+        /// <param name="dep"></param>
+        /// <returns></returns>
+        public List<Employee> GetEmpByIdDep(int dep)
+        {
+            List<Employee> list = new List<Employee>();
+
+            string sql = $@"SELECT * FROM EmpTable WHERE DepID={dep}";
+
+            using (SqlCommand com = new SqlCommand(sql, sqlConnection))
+            {
+                using (SqlDataReader reader = com.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(
+                            REmp(reader));
+                    }
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
         /// Метод чтения из БД Работника
         /// </summary>
         /// <param name="reader"></param>
