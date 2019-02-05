@@ -109,7 +109,7 @@ namespace WebAppEmpDep.Controllers
         /// <param name="value">Работник, добавляемый в БД</param>
         /// <returns></returns>
         [Route("addemp")]
-        public HttpResponseMessage Post([FromBody] Employee value)
+        public HttpResponseMessage PostEmp([FromBody] Employee value)
         {
             return Request.CreateResponse(_dataEmp.AddEmp(value) ? HttpStatusCode.Created : HttpStatusCode.BadRequest);
         }

@@ -60,7 +60,7 @@ namespace WebAppEmpDep.Controllers
         /// <param name="value"></param>
         /// <returns></returns>
         [Route("adddep")]
-        public HttpResponseMessage Post([FromBody] Department value)
+        public HttpResponseMessage PostDep([FromBody] Department value)
         {
             return Request.CreateResponse(_dataDep.AddDep(value) ? HttpStatusCode.Created : HttpStatusCode.BadRequest);
         }
