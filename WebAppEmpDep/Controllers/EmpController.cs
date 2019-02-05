@@ -35,12 +35,12 @@ namespace WebAppEmpDep.Controllers
         /// Метод возвращает список всех работников
         /// </summary>
         /// <returns></returns>
-        [Route("getlist")]
+        [Route("getlistemp")]
         public List<Employee> Get() => _dataEmp.Get();
 
 
 
-      
+
         //public IHttpActionResult GetEmployee(int id)
         //{
         //    var emp = _emps.FirstOrDefault((p) => p.Id == id);
@@ -56,7 +56,7 @@ namespace WebAppEmpDep.Controllers
         /// </summary>
         /// <param name="id">Идентификатор работника в базе данных</param>
         /// <returns></returns>
-        [Route("getlist/{id}")]
+        [Route("getlistemp/{id}")]
         public Employee Get(int id) => _dataEmp.Get(id);
 
 
@@ -81,8 +81,8 @@ namespace WebAppEmpDep.Controllers
         /// </summary>
         /// <param name="dep">Идентификатор департамента</param>
         /// <returns></returns>
-        [Route("getlist/{dep}")]
-        public List<Employee> GetEmpByIdDep(int emp) => _dataEmp.GetEmpByIdDep(emp);
+        [Route("getlistempdep/{dep}")]
+        public List<Employee> GetEmpByIdDep(int dep) => _dataEmp.GetEmpByIdDep(dep);
 
         //public IHttpActionResult GetDepEmpHttpActionResult(Employee[] emps, int depId)
         //{

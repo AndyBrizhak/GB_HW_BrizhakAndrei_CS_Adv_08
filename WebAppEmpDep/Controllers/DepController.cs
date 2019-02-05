@@ -33,7 +33,7 @@ namespace WebAppEmpDep.Controllers
         /// Метод получения списка Департаментов из БД в контроллере
         /// </summary>
         /// <returns></returns>
-        [Route("getlist")]
+        [Route("getlistdep")]
         public List<Department> Get() => _dataDep.GetList();
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace WebAppEmpDep.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("getlist/{id}")]
+        [Route("getlistdep/{id}")]
         public Department Get(int id) => _dataDep.GetDepById(id);
 
         //public IHttpActionResult GetDep(int id)
