@@ -33,6 +33,7 @@ namespace WebAppEmpDep.Controllers
         /// Метод получения списка Департаментов из БД в контроллере
         /// </summary>
         /// <returns></returns>
+        [Route("getlist")]
         public List<Department> Get() => _dataDep.GetList();
 
         /// <summary>
@@ -40,6 +41,7 @@ namespace WebAppEmpDep.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Route("getlist/{id}")]
         public Department Get(int id) => _dataDep.GetDepById(id);
 
         //public IHttpActionResult GetDep(int id)
@@ -57,19 +59,10 @@ namespace WebAppEmpDep.Controllers
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [Route("adddep")]
         public HttpResponseMessage Post([FromBody] Department value)
         {
-            if (_dataDep.AddDep(value))
-            {
-                return Request.CreateResponse(HttpStatusCode.Created);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
+            return Request.CreateResponse(_dataDep.AddDep(value) ? HttpStatusCode.Created : HttpStatusCode.BadRequest);
         }
-
-
-
     }
 }
