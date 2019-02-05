@@ -6,11 +6,14 @@ using System.Web;
 
 namespace WebAppEmpDep.Models
 {
-    public class GetDataDep
+    /// <summary>
+    /// Класс для работы с БД по списку Департаментов
+    /// </summary>
+    public class DataDep
     {
         private SqlConnection sqlConnection;
 
-        public GetDataDep()
+        public DataDep()
         {
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;
                                          Initial Catalog=Emp_Dep;
@@ -20,6 +23,10 @@ namespace WebAppEmpDep.Models
             sqlConnection.Open();
         }
 
+        /// <summary>
+        /// Метод получения списка Департаментов из БД
+        /// </summary>
+        /// <returns></returns>
         public List<Department> GetList()
         {
             List<Department> list = new List<Department>();
@@ -44,9 +51,14 @@ namespace WebAppEmpDep.Models
             return list;
         }
 
-        public Department GetDepById(int Id)
+        /// <summary>
+        /// Метод получения Департамента по номеру из БД
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Department GetDepById(int id)
         {
-            string sql = $@"SELECT * FROM DepTable WHERE Id={Id}";
+            string sql = $@"SELECT * FROM DepTable WHERE Id={id}";
             Department temp = new Department();
             using (SqlCommand com = new SqlCommand(sql, sqlConnection))
             {
@@ -67,13 +79,18 @@ namespace WebAppEmpDep.Models
             return temp;
         }
 
-        public bool AddDep(Department Dep)
+        /// <summary>
+        /// Метод добавления Департамента в БД
+        /// </summary>
+        /// <param name="dep"></param>
+        /// <returns></returns>
+        public bool AddDep(Department dep)
         {
             try
             {
                 string sqlAdd = $@" INSERT INTO DepTable(Id, NameDep)
-                               VALUES(N'{Dep.DepId}',
-                                      N'{Dep.DepName}') ";
+                               VALUES(N'{dep.DepId}',
+                                      N'{dep.DepName}') ";
                 using (var com = new SqlCommand(sqlAdd, sqlConnection))
                 {
                     com.ExecuteNonQuery();
