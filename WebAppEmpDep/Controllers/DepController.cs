@@ -52,6 +52,11 @@ namespace WebAppEmpDep.Controllers
         //    return Ok(dep);
         //}
 
+        /// <summary>
+        /// Метод добавления Департамента в БД
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HttpResponseMessage Post([FromBody] Department value)
         {
             if (_dataDep.AddDep(value))
