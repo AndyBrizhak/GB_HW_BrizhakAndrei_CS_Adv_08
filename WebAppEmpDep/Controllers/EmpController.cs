@@ -82,7 +82,7 @@ namespace WebAppEmpDep.Controllers
         /// <param name="dep">Идентификатор департамента</param>
         /// <returns></returns>
         [Route("getlist/{dep}")]
-        public List<Employee> GetEmpByIdDep(int dep) => _dataEmp.GetEmpByIdDep(dep);
+        public List<Employee> GetEmpByIdDep(int emp) => _dataEmp.GetEmpByIdDep(emp);
 
         //public IHttpActionResult GetDepEmpHttpActionResult(Employee[] emps, int depId)
         //{
