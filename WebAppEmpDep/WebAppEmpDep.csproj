@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Models\DataDep.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\EmpController.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
